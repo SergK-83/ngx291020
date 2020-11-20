@@ -1,16 +1,17 @@
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
   <div>
-    <button (click)="toggleSideNav()"
-            mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button (click)="toggleSidenav()"
+      mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <!--    <span>{{getDate()}}</span>-->
-    <!--    <span>{{title?.text}}</span>-->
-    <!--    <app-on-push></app-on-push>-->
     <span>{{title}}</span>
   </div>
-  <div fxLayout="row">
-    <app-exchange-rates></app-exchange-rates>
+  <div>
+    <span>{{size}}</span>
+    <button (click)="inc()"
+      mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>share</mat-icon>
     </button>

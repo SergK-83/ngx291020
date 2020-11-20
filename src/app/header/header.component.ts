@@ -1,11 +1,8 @@
 import {
-  Component,
-  Input,
-  OnInit,
+  Component, EventEmitter, Input,
+  OnInit, Output,
 } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
-
-// import { MatDrawer } from '@angular/material/sidenav';
+import {MatDrawer} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',
@@ -14,23 +11,35 @@ import { MatDrawer } from '@angular/material/sidenav';
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
+
   @Input()
   public set myTitle(value: string) {
     if (!value) {
       return;
     }
+
     this.title = value;
-  };
+  }
+
+  public title!: string;
 
   @Input()
   public drawer!: MatDrawer;
-  public title!: string;
+
+  @Input()
+  public size!: number;
+
+  @Output()
+  public sizeChange = new EventEmitter();
 
   public ngOnInit(): void {
   }
 
-  toggleSideNav(): void {
-    this.drawer.toggle();
+  public inc(): void {
+    this.sizeChange.emit(this.size + 1);
   }
 
+  public toggleSidenav(): void {
+    this.drawer.toggle();
+  }
 }
