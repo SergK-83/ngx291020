@@ -26,9 +26,7 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
 
     this.container.createEmbeddedView(this.contentTpl);
-
     console.log(this.container);
-
     this.setSidenavControl.emit(this.drawer);
   }
 
