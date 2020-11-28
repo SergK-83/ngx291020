@@ -1,0 +1,5 @@
+<div *appExchangeRates="let rate from rates autoplay 'off'">
+
+  <span>{{rate.value | currency:rate.currency: 'symbol-narrow'}}</span>
+
+</div>

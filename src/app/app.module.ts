@@ -8,6 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsFilterPipe } from './products-filter.pipe';
+import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
+import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { ProductsFilterPipe } from './products-filter.pipe';
     SidenavComponent,
     ProductCardComponent,
     ProductsFilterPipe,
+    ExchangeRatesComponent,
+    ExchangeRatesDirective,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
