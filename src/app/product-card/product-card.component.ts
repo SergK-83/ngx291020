@@ -1,10 +1,16 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IProduct} from '../data';
+import {IProduct} from '../products.service';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  styleUrls: ['./product-card.component.css'],
+  // providers: [
+  //   {
+  //     provide: ProductsService,
+  //     useClass: ProductsService
+  //   }
+  // ]
 })
 export class ProductCardComponent implements OnInit {
   @Input()
@@ -13,7 +19,9 @@ export class ProductCardComponent implements OnInit {
   @Input()
   public isOdd!: boolean;
 
-  constructor() { }
+  constructor(
+
+  ) { }
 
   ngOnInit(): void {
   }

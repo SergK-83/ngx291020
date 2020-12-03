@@ -10,6 +10,10 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsFilterPipe } from './products-filter.pipe';
 import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
 import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
+import { HiddenDirective } from './header/exchange-rates/hidden.directive';
+import {ProductsService} from './products.service';
+import {environment} from '../environments/environment';
+import {BASE_URL} from './config';
 
 @NgModule({
   declarations: [
@@ -20,10 +24,22 @@ import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.d
     ProductsFilterPipe,
     ExchangeRatesComponent,
     ExchangeRatesDirective,
+    HiddenDirective,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
     SharedModule
+  ],
+  providers: [
+    {
+      provide: BASE_URL,
+      useValue: environment.baseUrl
+    },
+    ProductsService
+    // {
+    //   provide: ProductsService,
+    //   useClass: ProductsService
+    // }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
-import {IProduct, products$} from './data';
 import {Observable} from 'rxjs';
 import {MatCheckboxChange} from '@angular/material/checkbox';
+import {IProduct, ProductsService} from './products.service';
 
 
 @Component({
@@ -14,18 +14,17 @@ export class AppComponent implements OnInit {
 
   public myTitle = 'Angular course';
   public drawer!: MatDrawer;
-  public products$: Observable<IProduct[]> = products$;
+  public products$: Observable<IProduct[]> = this.productsService.getProducts();
   public searchText: string = '';
   public onlyFavorites = false;
 
   constructor(
-    // private cdr: ChangeDetectorRef
-  ) {
-  }
+    private cdr: ChangeDetectorRef,
+    private productsService: ProductsService
+  ) {}
 
   ngOnInit(): void {
-    // this.products$ = products$;
-    // this.cdr.detectChanges();
+    this.cdr.detectChanges();
 
     // this.products$
     //   .subscribe((products) => {

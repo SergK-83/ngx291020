@@ -14,9 +14,14 @@ export class ExchangeRatesDirective implements OnInit{
   public rates = [] as IRate[];
 
   @Input('appExchangeRatesAutoplay')
-  public mode!: 'on' | 'off';
+  public mode: 'on' | 'off' = 'off';
+
+  @Input('appExchangeRatesDelay')
+  public ms: number = 5000;
 
   public context: any = null;
+  private index: number = 0;
+  private intervalId!: number;
 
   constructor(
     private tpl: TemplateRef<any>,
@@ -25,9 +30,53 @@ export class ExchangeRatesDirective implements OnInit{
 
   public ngOnInit(): void {
     this.context = {
-      $implicit: this.rates[0]
-    }
+      $implicit: this.rates[this.index],
+      controller: {
+        next: () => this.next(),
+        prev: () => this.prev(),
+      }
+    };
     this.vcr.createEmbeddedView(this.tpl, this.context);
+    this.resetInterval();
   }
 
+  private prev(): void {
+    this.resetInterval();
+    this.index--;
+    if (this.index < 0) {
+      this.index = this.rates.length - 1;
+    }
+    this.context.$implicit = this.rates[this.index];
+  }
+
+  private next(): void {
+    this.resetInterval();
+    this.index++;
+    if (this.index >= this.rates.length) {
+      this.index = 0;
+    }
+    this.context.$implicit = this.rates[this.index];
+  }
+
+  private resetInterval(): void {
+    if (this.mode !== 'on') {
+      return;
+    }
+    this.clearInterval()
+      .initInterval();
+  }
+
+  private initInterval(): this {
+    this.intervalId = setInterval(() => {
+      this.next();
+    }, this.ms);
+    return this;
+  }
+
+  private clearInterval(): this {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+    return this;
+  }
 }
