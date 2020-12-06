@@ -14,6 +14,8 @@ import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 import {ProductsService} from './products.service';
 import {environment} from '../environments/environment';
 import {BASE_URL} from './config';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,11 @@ import {BASE_URL} from './config';
     SharedModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     {
       provide: BASE_URL,
       useValue: environment.baseUrl
