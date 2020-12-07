@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IProduct} from '../products.service';
+import {ModalService} from '../modal/modal.service';
+import {ConfirmProductComponent} from '../confirm-product/confirm-product.component';
 
 @Component({
   selector: 'app-product-card',
@@ -20,10 +22,19 @@ export class ProductCardComponent implements OnInit {
   public isOdd!: boolean;
 
   constructor(
-
+    private readonly modalService: ModalService
   ) { }
 
   ngOnInit(): void {
+  }
+
+  public addToCart(): void {
+    this.modalService.open({
+      component: ConfirmProductComponent,
+      context: {
+        product: {...this.product}
+      }
+    });
   }
 
 }

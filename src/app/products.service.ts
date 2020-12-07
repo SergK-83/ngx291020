@@ -25,6 +25,6 @@ export class ProductsService {
   }
 
   public getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`/`);
+    return this.http.get<IProduct[]>(`/products`);
   }
 }

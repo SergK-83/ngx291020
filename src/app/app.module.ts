@@ -16,6 +16,8 @@ import {environment} from '../environments/environment';
 import {BASE_URL} from './config';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth.interceptor';
+import {ModalModule} from './modal/modal.module';
+import { ConfirmProductComponent } from './confirm-product/confirm-product.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,12 @@ import {AuthInterceptor} from './auth.interceptor';
     ExchangeRatesComponent,
     ExchangeRatesDirective,
     HiddenDirective,
+    ConfirmProductComponent,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    ModalModule.forRoot()
   ],
   providers: [
     {
