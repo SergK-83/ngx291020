@@ -32,7 +32,13 @@ export class ProductCardComponent implements OnInit {
     this.modalService.open({
       component: ConfirmProductComponent,
       context: {
-        product: {...this.product}
+        product: {...this.product},
+        save: () => {
+          this.modalService.close();
+        },
+        close: () => {
+          this.modalService.close();
+        },
       }
     });
   }

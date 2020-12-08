@@ -52,6 +52,7 @@ import { ConfirmProductComponent } from './confirm-product/confirm-product.compo
     //   useClass: ProductsService
     // }
   ],
+  // entryComponents: [ConfirmProductComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

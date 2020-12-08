@@ -9,7 +9,7 @@ export interface IModalData {
 @Injectable()
 export class ModalService {
 
-  private modalSequence: Subject<IModalData> = new Subject();
+  private modalSequence: Subject<IModalData | null> = new Subject();
 
   constructor() { }
 
@@ -19,5 +19,9 @@ export class ModalService {
 
   public get modalSequence$(): Observable<any> {
     return this.modalSequence.asObservable();
+  }
+
+  public close(): void {
+    this.modalSequence.next(null);
   }
 }
