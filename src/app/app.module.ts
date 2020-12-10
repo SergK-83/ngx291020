@@ -18,6 +18,9 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth.interceptor';
 import {ModalModule} from './modal/modal.module';
 import { ConfirmProductComponent } from './confirm-product/confirm-product.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,14 @@ import { ConfirmProductComponent } from './confirm-product/confirm-product.compo
     ExchangeRatesDirective,
     HiddenDirective,
     ConfirmProductComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
+    AppRoutingModule,
     SharedModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
   providers: [
     {
