@@ -2,7 +2,9 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
 import {Observable} from 'rxjs';
 import {MatCheckboxChange} from '@angular/material/checkbox';
-import {IProduct, ProductsService} from './products.service';
+import {IProduct, ProductsService} from './content/backoffice/content/products/products.service';
+import {NavigationStart, Router} from '@angular/router';
+import {filter} from 'rxjs/operators';
 
 
 @Component({
@@ -20,11 +22,17 @@ export class AppComponent implements OnInit {
 
   constructor(
     private cdr: ChangeDetectorRef,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.cdr.detectChanges();
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationStart && event.id === 1 ) // только на event NavigationStart  и только при refresh (event.id === 1)
+      )
+      .subscribe((event) => { console.log(event); });
 
     // this.products$
     //   .subscribe((products) => {

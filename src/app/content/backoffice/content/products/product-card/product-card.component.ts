@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IProduct} from '../products.service';
-import {ModalService} from '../modal/modal.service';
+import {ModalService} from '../../../../../modal/modal.service';
 import {ConfirmProductComponent} from '../confirm-product/confirm-product.component';
 
 @Component({

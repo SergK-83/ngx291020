@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, NgModule} from '@angular/core';
 import {IProduct} from '../products.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-confirm-product',
@@ -13,6 +15,12 @@ export class ConfirmProductComponent {
   public save = () => {};
   public close = () => {};
 
-  constructor() { }
+}
+
+@NgModule({
+  declarations: [ConfirmProductComponent],
+  imports: [MatCardModule, MatButtonModule]
+})
+export class ConfirmProductModule {
 
 }

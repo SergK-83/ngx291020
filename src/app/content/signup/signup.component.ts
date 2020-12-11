@@ -13,6 +13,16 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    console.log(this.router.config); // !!!
+
+    // можно налету перезаписывать routings
+    // this.router.resetConfig([
+    //   {
+    //      path: 'dashboard'
+    //   }
+    // ]);
+
   }
 
   public goToLogin(): void {

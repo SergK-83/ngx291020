@@ -1,0 +1,8 @@
+<app-header
+  [myTitle]="myTitle"
+  [drawer]="drawer"
+></app-header>
+
+<app-sidenav (setSidenavControl)="setSidenav($event)">
+  <router-outlet></router-outlet>
+</app-sidenav>

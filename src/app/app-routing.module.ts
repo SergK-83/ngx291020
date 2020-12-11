@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import {SignupComponent} from './signup/signup.component';
 
 export const appRoutes: Routes = [
   {
@@ -11,11 +9,15 @@ export const appRoutes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    loadChildren: () => import('./content/login/login.module').then((m) => m.LoginModule)
   },
   {
-    path: 'signup',
-    component: SignupComponent
+    path: 'signup', // в login component есть вариант с динамическим созданием данного route в самом компоненте
+    loadChildren: () => import('./content/signup/signup.module').then((m) => m.SignupModule)
+  },
+  {
+    path: 'backoffice',
+    loadChildren: () => import('./content/backoffice/backoffice.module').then((m) => m.BackofficeModule)
   },
   {
     path: '**',
