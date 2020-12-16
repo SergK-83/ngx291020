@@ -15,6 +15,12 @@ export const childRoutes: Routes = [
     children: [
       {
         path: '',
+        data: {
+          breadcrumbs: {
+            url: 'products',
+            title: 'Products page'
+          }
+        },
         loadChildren: () => import('./content/products/products.module').then((m) => m.ProductsModule)
       }
     ]

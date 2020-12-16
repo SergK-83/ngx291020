@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,7 +11,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {BASE_URL} from './services/config';
+import {environment} from '../../environments/environment';
+import {AuthInterceptor} from './services/auth.interceptor';
 
 
 @NgModule({
@@ -29,7 +32,25 @@ import {HttpClientModule} from '@angular/common/http';
     MatInputModule,
     MatCheckboxModule,
     HttpClientModule
+  ],
+  providers: [ // for each module
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ]
 })
 export class SharedModule {
+  public static forRoot(): ModuleWithProviders<SharedModule> { // inject in root
+    return {
+      ngModule: SharedModule,
+      providers: [
+        {
+          provide: BASE_URL,
+          useValue: environment.baseUrl
+        },
+      ]
+    };
+  }
 }
