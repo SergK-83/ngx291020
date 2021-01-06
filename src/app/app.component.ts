@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationStart, Router} from '@angular/router';
-import {filter} from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-root',
@@ -11,14 +8,14 @@ import {filter} from 'rxjs/operators';
 export class AppComponent implements OnInit {
 
   constructor(
-    private router: Router,
+    // private router: Router,
   ) {}
 
   public ngOnInit(): void {
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationStart && event.id === 1 ) // только на event NavigationStart  и только при refresh (event.id === 1)
-      )
-      .subscribe((event) => { console.log(event); });
+    // this.router.events
+    //   .pipe(
+    //     // filter((event) => event instanceof NavigationStart && event.id === 1 ) // только на event NavigationStart  и только при refresh (event.id === 1)
+    //   )
+    //   .subscribe((event) => { console.log(event); });
   }
 }

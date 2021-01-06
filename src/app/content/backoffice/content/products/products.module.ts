@@ -6,6 +6,7 @@ import {SharedModule} from '../../../../shared/shared.module';
 import {RouterModule, Routes} from '@angular/router';
 import {ProductsService} from './products.service';
 import { OneProductComponent } from './one-product/one-product.component';
+import {OneProductResolverService} from './one-product/one-product-resolver.service';
 
 export const childRoutes: Routes = [
   {
@@ -14,7 +15,10 @@ export const childRoutes: Routes = [
   },
   {
     path: ':id',
-    component: OneProductComponent
+    component: OneProductComponent,
+    resolve: {
+      product: OneProductResolverService
+    }
   }
 ];
 
@@ -31,6 +35,7 @@ export const childRoutes: Routes = [
   ],
   providers: [
     ProductsService,
+    OneProductResolverService
     // {
     //   provide: ProductsService,
     //   useClass: ProductsService

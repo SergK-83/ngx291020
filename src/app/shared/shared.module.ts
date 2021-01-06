@@ -15,6 +15,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BASE_URL} from './services/config';
 import {environment} from '../../environments/environment';
 import {AuthInterceptor} from './services/auth.interceptor';
+import {AuthGuard} from './services/auth.guard';
+import {PermissionGuard} from './services/permission.guard';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
+        AuthGuard,
+        PermissionGuard,
         {
           provide: BASE_URL,
           useValue: environment.baseUrl
