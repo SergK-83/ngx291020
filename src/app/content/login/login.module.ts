@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login.component';
 import {SharedModule} from '../../shared/shared.module';
+import { UsernameValidatorDirective } from './username-validator.directive';
 
 export const childRoutes: Routes = [
   {
@@ -12,7 +13,8 @@ export const childRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    UsernameValidatorDirective
   ],
   imports: [
     SharedModule,

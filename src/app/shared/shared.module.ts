@@ -17,6 +17,7 @@ import {environment} from '../../environments/environment';
 import {AuthInterceptor} from './services/auth.interceptor';
 import {AuthGuard} from './services/auth.guard';
 import {PermissionGuard} from './services/permission.guard';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import {PermissionGuard} from './services/permission.guard';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ // for each module
     {
