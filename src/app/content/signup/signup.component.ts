@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -7,6 +8,14 @@ import {Router} from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+
+  public signUpForm = new FormGroup({
+    username: new FormControl({value: 'Serg', disabled: true}, [Validators.required, Validators.minLength(4)]),
+    // password: new FormGroup({
+    //   password: new FormControl(''),
+    //   cpassword: new FormControl(''),
+    // }),
+  });
 
   constructor(
     private router: Router
@@ -16,6 +25,10 @@ export class SignupComponent implements OnInit {
 
     console.log(this.router.config); // !!!
 
+    setTimeout(() => {
+      this.signUpForm.get('username')?.enable();
+    }, 3000);
+
     // можно налету перезаписывать routings
     // this.router.resetConfig([
     //   {
@@ -23,6 +36,10 @@ export class SignupComponent implements OnInit {
     //   }
     // ]);
 
+  }
+
+  public signup(user: any): void {
+    console.log(user);
   }
 
   public goToLogin(): void {

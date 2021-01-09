@@ -1,2 +1,31 @@
 <p>signup works!</p>
 <button mat-button (click)="goToLogin()">Go to Login</button>
+
+<div class="auth-content">
+  <mat-card>
+    <mat-card-content>
+      <div [formGroup]="signUpForm">
+        <p>Sign up to continue</p>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Username" formControlName="username" appUsernameValidator>
+<!--          <mat-error *ngIf="this.signUpForm.get('username') && this.signUpForm.errors.username">{{this.signUpForm.errors.username}}</mat-error>-->
+        </mat-form-field>
+<!--        <mat-form-field>-->
+<!--          <input matInput type="password" placeholder="Password" formControlName="password" required>-->
+<!--        </mat-form-field>-->
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          [disabled]="signUpForm.invalid"
+          (click)="signup(signUpForm.value)"
+        >
+          Sign Up
+        </button>
+        <button mat-button [routerLink]="['/login']">Go to Login</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <pre>{{signUpForm.value | json}}</pre>
+  <pre>{{signUpForm.valid}}</pre>
+</div>
