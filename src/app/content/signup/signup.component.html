@@ -8,7 +8,10 @@
         <p>Sign up to continue</p>
         <mat-form-field>
           <input matInput type="text" placeholder="Username" formControlName="username" appUsernameValidator>
-<!--          <mat-error *ngIf="this.signUpForm.get('username') && this.signUpForm.errors.username">{{this.signUpForm.errors.username}}</mat-error>-->
+          <ng-container *ngIf="signUpForm.get('username')?.errors?.username as usernmeError">
+            <mat-error>{{usernmeError}}</mat-error>
+          </ng-container>
+          {{this.signUpForm.get('username')?.errors | json}}
         </mat-form-field>
 <!--        <mat-form-field>-->
 <!--          <input matInput type="password" placeholder="Password" formControlName="password" required>-->

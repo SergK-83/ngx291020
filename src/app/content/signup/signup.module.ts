@@ -12,7 +12,7 @@ export const childRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    SignupComponent
+    SignupComponent,
   ],
   imports: [
     SharedModule,

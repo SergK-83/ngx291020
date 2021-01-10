@@ -18,9 +18,12 @@ import {AuthInterceptor} from './services/auth.interceptor';
 import {AuthGuard} from './services/auth.guard';
 import {PermissionGuard} from './services/permission.guard';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UsernameValidatorDirective} from './directives/username-validator.directive';
 
 
 @NgModule({
+  declarations: [UsernameValidatorDirective],
+  imports: [FormsModule],
   exports: [
     CommonModule,
     MatToolbarModule,
@@ -36,7 +39,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatCheckboxModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UsernameValidatorDirective
   ],
   providers: [ // for each module
     {
