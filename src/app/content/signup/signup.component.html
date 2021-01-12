@@ -2,7 +2,7 @@
 <button mat-button (click)="goToLogin()">Go to Login</button>
 
 <div class="auth-content">
-  <mat-card>
+  <mat-card *ngIf="signUpForm">
     <mat-card-content>
       <div [formGroup]="signUpForm">
         <p>Sign up to continue</p>
@@ -11,11 +11,18 @@
           <ng-container *ngIf="signUpForm.get('username')?.errors?.username as usernmeError">
             <mat-error>{{usernmeError}}</mat-error>
           </ng-container>
-          {{this.signUpForm.get('username')?.errors | json}}
+          <!--{{this.signUpForm.get('username')?.errors | json}}-->
         </mat-form-field>
-<!--        <mat-form-field>-->
-<!--          <input matInput type="password" placeholder="Password" formControlName="password" required>-->
-<!--        </mat-form-field>-->
+
+        <!--<div formGroupName="password">-->
+          <!--<mat-form-field>-->
+            <!--<input matInput type="password" placeholder="Password" formControlName="password" required>-->
+          <!--</mat-form-field>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput type="password" placeholder="Confirm password" formControlName="cpassword" required>-->
+          <!--</mat-form-field>-->
+        <!--</div>-->
+
         <button
           mat-raised-button
           color="primary"
@@ -29,6 +36,9 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <pre>{{signUpForm.value | json}}</pre>
-  <pre>{{signUpForm.valid}}</pre>
+
+  <div *ngIf="signUpForm">
+    <pre>{{signUpForm.value | json}}</pre>
+    <pre>{{signUpForm.valid}}</pre>
+  </div>
 </div>

@@ -9,13 +9,15 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  public signUpForm = new FormGroup({
-    username: new FormControl({value: 'Serg', disabled: true}, [Validators.required, Validators.minLength(4)]),
-    // password: new FormGroup({
-    //   password: new FormControl(''),
-    //   cpassword: new FormControl(''),
-    // }),
-  });
+  public signUpForm!: FormGroup;
+
+  // public signUpForm = new FormGroup({
+  //   username: new FormControl({value: 'Serg', disabled: true}, [Validators.required, Validators.minLength(4)]),
+  //   password: new FormGroup({
+  //     password: new FormControl(''),
+  //     cpassword: new FormControl(''),
+  //   }),
+  // });
 
   constructor(
     private router: Router
@@ -26,8 +28,19 @@ export class SignupComponent implements OnInit {
     console.log(this.router.config); // !!!
 
     setTimeout(() => {
-      this.signUpForm.get('username')?.enable();
-    }, 3000);
+      const jsonRes = {
+        username: '',
+        password: ''
+      };
+      this.signUpForm = new FormGroup(Object.entries(jsonRes)
+        .reduce((form, [key, value]) => {
+          return {...form, [key]: new FormControl(value, [Validators.required, Validators.minLength(4)])} as any;
+        }, {}));
+    }, 5000);
+
+    // setTimeout(() => {
+    //   this.signUpForm.get('username')?.enable();
+    // }, 3000);
 
     // можно налету перезаписывать routings
     // this.router.resetConfig([
