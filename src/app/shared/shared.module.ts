@@ -19,6 +19,7 @@ import {AuthGuard} from './services/auth.guard';
 import {PermissionGuard} from './services/permission.guard';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UsernameValidatorDirective} from './directives/username-validator.directive';
+import {ValidationService} from './services/validation.service';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ export class SharedModule {
       providers: [
         AuthGuard,
         PermissionGuard,
+        ValidationService,
         {
           provide: BASE_URL,
           useValue: environment.baseUrl

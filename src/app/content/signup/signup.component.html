@@ -6,22 +6,28 @@
     <mat-card-content>
       <div [formGroup]="signUpForm">
         <p>Sign up to continue</p>
+
+        <!--<div *ngFor="let kv of signUpForm.value | keyvalue">-->
+          <!--{{kv.key}}-->
+          <!--<mat-form-field>-->
+            <!--<input matInput type="text" placeholder="{{kv.key}}" [formControl]="getControl(kv.key)">-->
+          <!--</mat-form-field>-->
+        <!--</div>-->
+
         <mat-form-field>
           <input matInput type="text" placeholder="Username" formControlName="username" appUsernameValidator>
-          <ng-container *ngIf="signUpForm.get('username')?.errors?.username as usernmeError">
-            <mat-error>{{usernmeError}}</mat-error>
-          </ng-container>
+          <mat-error *ngIf="signUpForm.get('username')?.errors?.username as usernmeError">{{usernmeError}}</mat-error>
           <!--{{this.signUpForm.get('username')?.errors | json}}-->
         </mat-form-field>
 
-        <!--<div formGroupName="password">-->
-          <!--<mat-form-field>-->
-            <!--<input matInput type="password" placeholder="Password" formControlName="password" required>-->
-          <!--</mat-form-field>-->
-          <!--<mat-form-field>-->
-            <!--<input matInput type="password" placeholder="Confirm password" formControlName="cpassword" required>-->
-          <!--</mat-form-field>-->
-        <!--</div>-->
+        <div formGroupName="password">
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="Confirm password" formControlName="cpassword" required>
+          </mat-form-field>
+        </div>
 
         <button
           mat-raised-button
