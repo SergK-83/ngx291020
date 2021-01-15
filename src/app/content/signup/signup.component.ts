@@ -86,7 +86,7 @@ export class SignupComponent implements OnInit {
   }
 
   public uniqueUserName({value: username}: FormControl): Observable<ValidationErrors | null> {
-    return this.http.post('/auth/checkUsername', {username});
+    return this.http.post('/checkUsername', {username});
   }
 
 }
