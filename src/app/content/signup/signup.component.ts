@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormControl, ValidationErrors} from '@angular/forms';
-import {Observable} from 'rxjs';
+import {FormBuilder, FormControl} from '@angular/forms';
+import {ValidationService} from '../../shared/services/validation.service';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -20,12 +20,12 @@ export class SignupComponent implements OnInit {
   // });
 
   public signUpForm = this.fb.group({
-    username: ['', null, this.uniqueUserName.bind(this)],
+    username: ['', this.validationService.usernameSpecialSymbols, this.validationService.uniqueUserName.bind(this.validationService)],
     password: this.fb.group({
       password: [''],
       cpassword: [''],
     }, {
-      validators: [this.equalValidator]
+      validators: [this.validationService.equalValidator]
     }),
   });
 
@@ -33,6 +33,7 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private http: HttpClient,
+    private validationService: ValidationService,
   ) {
   }
 
@@ -64,8 +65,10 @@ export class SignupComponent implements OnInit {
 
   }
 
-  public signup(user: any): void {
+  public signup(user: any): any {
     console.log(user);
+
+    return this.http.post('/checkUsername', user).subscribe();
   }
 
   public goToLogin(): void {
@@ -74,19 +77,6 @@ export class SignupComponent implements OnInit {
 
   public getControl(name: any): FormControl {
     return this.signUpForm.get(name) as FormControl;
-  }
-
-  public equalValidator({value}: FormControl): ValidationErrors | null {
-    const [password, cpassword] = Object.values(value);
-    return password === cpassword
-      ? null
-      : {
-        password: 'Password do not match'
-      };
-  }
-
-  public uniqueUserName({value: username}: FormControl): Observable<ValidationErrors | null> {
-    return this.http.post('/checkUsername', {username});
   }
 
 }

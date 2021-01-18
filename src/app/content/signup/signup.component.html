@@ -15,7 +15,7 @@
         <!--</div>-->
 
         <mat-form-field>
-          <input matInput type="text" placeholder="Username" formControlName="username" appUsernameValidator>
+          <input matInput type="text" placeholder="Username" formControlName="username" autocomplete="off">
           <mat-error *ngIf="signUpForm.get('username')?.errors?.username as usernmeError">{{usernmeError}}</mat-error>
           <!--{{this.signUpForm.get('username')?.errors | json}}-->
         </mat-form-field>
@@ -33,7 +33,7 @@
           mat-raised-button
           color="primary"
           type="button"
-          [disabled]="signUpForm.invalid"
+          [disabled]="signUpForm.invalid || signUpForm.pending"
           (click)="signup(signUpForm.value)"
         >
           Sign Up
