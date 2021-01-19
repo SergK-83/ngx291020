@@ -20,6 +20,19 @@
           <!--{{this.signUpForm.get('username')?.errors | json}}-->
         </mat-form-field>
 
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="center"
+               *ngFor="let control of getControls(signUpForm, 'emails') as controls; index as i; first as f">
+            <mat-form-field fxFlex="90">
+              <input matInput type="text" placeholder="Email" [formControl]="toControl(control)">
+            </mat-form-field>
+            <div fxLayout="row" fxFlex="10">
+              <mat-icon *ngIf="f" (click)="addEmail()">add</mat-icon>
+              <mat-icon *ngIf="i > 0" (click)="removeEmail(i)">delete</mat-icon>
+            </div>
+          </div>
+        </div>
+
         <div formGroupName="password">
           <mat-form-field>
             <input matInput type="password" placeholder="Password" formControlName="password" required>

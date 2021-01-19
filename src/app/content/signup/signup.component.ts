@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ValidationService} from '../../shared/services/validation.service';
 import {HttpClient} from '@angular/common/http';
 
@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
 
   public signUpForm = this.fb.group({
     username: ['', this.validationService.usernameSpecialSymbols, this.validationService.uniqueUserName.bind(this.validationService)],
+    emails: this.fb.array(['']),
     password: this.fb.group({
       password: [''],
       cpassword: [''],
@@ -79,4 +80,19 @@ export class SignupComponent implements OnInit {
     return this.signUpForm.get(name) as FormControl;
   }
 
+  public getControls(form: FormGroup, name: any): AbstractControl[] {
+    return (form.get(name) as FormArray).controls;
+  }
+
+  public addEmail(): void {
+    (this.signUpForm.get('emails') as FormArray).push(this.fb.control(''));
+  }
+
+  public removeEmail(index: number): void {
+    (this.signUpForm.get('mails') as FormArray).removeAt(index);
+  }
+
+  public toControl(control: AbstractControl): FormControl {
+    return control as FormControl;
+  }
 }
