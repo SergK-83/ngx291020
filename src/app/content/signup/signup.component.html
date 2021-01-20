@@ -21,17 +21,28 @@
         </mat-form-field>
 
         <div fxLayout="column">
-          <div fxLayout="row" fxLayoutAlign="center"
+          <div fxLayout="row" fxLayoutAlign="space-around center"
                *ngFor="let control of getControls(signUpForm, 'emails') as controls; index as i; first as f">
-            <mat-form-field fxFlex="90">
+            <mat-form-field fxFlex="80">
               <input matInput type="text" placeholder="Email" [formControl]="toControl(control)">
             </mat-form-field>
-            <div fxLayout="row" fxFlex="10">
-              <mat-icon *ngIf="f" (click)="addEmail()">add</mat-icon>
-              <mat-icon *ngIf="i > 0" (click)="removeEmail(i)">delete</mat-icon>
+            <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center" style="color:#777">
+              <button mat-icon-button *ngIf="f" (click)="addEmail()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="controls.length > 1" (click)="removeEmail(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
             </div>
           </div>
         </div>
+
+        <div fxLayout="row">
+          <div>Male</div>
+          <app-switcher formControlName="male"></app-switcher>
+        </div>
+
+        <mat-divider [inset]="true" style="margin: 20px 0"></mat-divider>
 
         <div formGroupName="password">
           <mat-form-field>

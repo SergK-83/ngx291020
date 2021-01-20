@@ -20,6 +20,7 @@ import {PermissionGuard} from './services/permission.guard';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UsernameValidatorDirective} from './directives/username-validator.directive';
 import {ValidationService} from './services/validation.service';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {ValidationService} from './services/validation.service';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    MatDividerModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

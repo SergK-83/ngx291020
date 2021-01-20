@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
   public signUpForm = this.fb.group({
     username: ['', this.validationService.usernameSpecialSymbols, this.validationService.uniqueUserName.bind(this.validationService)],
     emails: this.fb.array(['']),
+    male: ['true'],
     password: this.fb.group({
       password: [''],
       cpassword: [''],
@@ -89,7 +90,7 @@ export class SignupComponent implements OnInit {
   }
 
   public removeEmail(index: number): void {
-    (this.signUpForm.get('mails') as FormArray).removeAt(index);
+    (this.signUpForm.get('emails') as FormArray).removeAt(index);
   }
 
   public toControl(control: AbstractControl): FormControl {
