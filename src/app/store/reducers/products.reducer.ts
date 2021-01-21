@@ -1,4 +1,4 @@
-import {createReducer, on} from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
 import {getProductsSuccess} from '../actions/products.actions';
 
 
@@ -15,7 +15,12 @@ const initialState: IProduct[] = [];
 
 const reducer = createReducer(
   initialState,
-  on(getProductsSuccess, (_state, action) => {
-    return action.products;
+  // tslint:disable-next-line:variable-name
+  on(getProductsSuccess, (_state, {products}) => {
+    return products;
   })
 );
+
+export default function productsReducer(state: any, action: Action): any {
+  return reducer(state, action);
+}
