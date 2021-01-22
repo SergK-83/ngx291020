@@ -7,6 +7,10 @@ import { SharedModule } from './shared/shared.module';
 import {BASE_URL} from './shared/services/config';
 import {ModalModule} from './modal/modal.module';
 import {AppRoutingModule} from './app-routing.module';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {reducers} from './store';
+import {environment} from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,11 @@ import {AppRoutingModule} from './app-routing.module';
     AppRoutingModule,
     SharedModule.forRoot(),
     ModalModule.forRoot(),
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [
     {

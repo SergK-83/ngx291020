@@ -1,4 +1,4 @@
-import {createReducer, on} from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
 import {getProductsSuccess} from '../actions/products.actions';
 
 
@@ -19,3 +19,7 @@ const reducer = createReducer(
     return action.products;
   })
 );
+
+export default function productsReducer(state: any, action: Action): any {
+  return reducer(state, action);
+}
