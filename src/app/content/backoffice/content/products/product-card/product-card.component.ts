@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IProduct} from '../products.service';
 import {ModalService} from '../../../../../modal/modal.service';
 import {ConfirmProductComponent} from '../confirm-product/confirm-product.component';
+import {IProduct} from '../../../../../store/reducers/products.reducer';
 
 @Component({
   selector: 'app-product-card',
