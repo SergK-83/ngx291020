@@ -9,8 +9,10 @@ import {ModalModule} from './modal/modal.module';
 import {AppRoutingModule} from './app-routing.module';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 import {reducers} from './store';
-import {environment} from 'src/environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {ProductsEffects} from './store/effects/products.effects';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {environment} from 'src/environments/environment';
     SharedModule.forRoot(),
     ModalModule.forRoot(),
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([ProductsEffects]),
+    // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
