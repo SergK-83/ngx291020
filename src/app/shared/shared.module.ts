@@ -21,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UsernameValidatorDirective} from './directives/username-validator.directive';
 import {ValidationService} from './services/validation.service';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
+    MatBadgeModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
     MatGridListModule,

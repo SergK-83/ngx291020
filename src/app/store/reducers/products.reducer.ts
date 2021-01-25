@@ -1,5 +1,5 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import {getProductsSuccess} from '../actions/products.actions';
+import {getProductsPending, getProductsSuccess} from '../actions/products.actions';
 
 
 export interface IProduct {
@@ -11,13 +11,24 @@ export interface IProduct {
   'isFavorite': boolean;
 }
 
-const initialState: IProduct[] = [];
+export interface IProductsState {
+  items: IProduct[];
+  isLoad: boolean
+}
+
+const initialState: IProductsState = {
+  items: [],
+  isLoad: false
+};
 
 const reducer = createReducer(
   initialState,
+  on(getProductsPending, (_state) => {
+    return {..._state, isLoad: true};
+  }),
   // tslint:disable-next-line:variable-name
   on(getProductsSuccess, (_state, {products}) => {
-    return products;
+    return {..._state, isLoad: false, items: products};
   })
 );
 

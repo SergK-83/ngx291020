@@ -1,0 +1,36 @@
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {ICartProduct} from '../../../../../store/reducers/cart.reducer';
+
+@Component({
+  selector: 'app-cart-product',
+  templateUrl: './cart-product.component.html',
+  styleUrls: ['./cart-product.component.css']
+})
+export class CartProductComponent {
+
+  @Input()
+  public product!: ICartProduct;
+
+  @Output()
+  public decrement = new EventEmitter();
+
+  @Output()
+  public increment = new EventEmitter();
+
+  @Output()
+  public remove = new EventEmitter();
+
+
+  public incrementProduct(): void {
+    this.increment.emit();
+  }
+
+  public decrementProduct(): void {
+    this.decrement.emit();
+  }
+
+  public removeProduct(): void {
+    this.remove.emit();
+  }
+
+}

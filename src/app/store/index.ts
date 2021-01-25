@@ -1,9 +1,13 @@
-import productsReducer, {IProduct} from './reducers/products.reducer';
+import productsReducer, {IProductsState} from './reducers/products.reducer';
+import cartReducer, {ICartProduct} from './reducers/cart.reducer';
+import {EntityState} from '@ngrx/entity';
 
 export interface IRootState {
-  products: IProduct[];
+  products: IProductsState;
+  cart: EntityState<ICartProduct>;
 }
 
 export const reducers = {
-  products: productsReducer
+  products: productsReducer,
+  cart: cartReducer
 }

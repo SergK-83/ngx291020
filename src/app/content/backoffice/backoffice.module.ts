@@ -14,6 +14,10 @@ export const childRoutes: Routes = [
     component: BackofficeComponent,
     children: [
       {
+        path: 'cart',
+        loadChildren: () => import('./content/cart/cart.module').then((m) => m.CartModule)
+      },
+      {
         path: '',
         data: {
           breadcrumbs: {

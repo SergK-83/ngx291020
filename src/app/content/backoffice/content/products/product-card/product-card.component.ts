@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ModalService} from '../../../../../modal/modal.service';
 import {ConfirmProductComponent} from '../confirm-product/confirm-product.component';
 import {IProduct} from '../../../../../store/reducers/products.reducer';
+import {Store} from '@ngrx/store';
+import {IRootState} from '../../../../../store';
+import {addProductToCart} from '../../../../../store/actions/cart.actions';
 
 @Component({
   selector: 'app-product-card',
@@ -22,7 +25,8 @@ export class ProductCardComponent implements OnInit {
   public isOdd!: boolean;
 
   constructor(
-    private readonly modalService: ModalService
+    private readonly modalService: ModalService,
+    private readonly store: Store<IRootState>
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +38,7 @@ export class ProductCardComponent implements OnInit {
       context: {
         product: {...this.product},
         save: () => {
+          this.store.dispatch(addProductToCart({product: this.product}));
           this.modalService.close();
         },
         close: () => {

@@ -14,7 +14,7 @@ import { IProduct } from 'src/app/store/reducers/products.reducer';
 })
 export class ProductsComponent implements OnInit {
   // public products$: Observable<IProduct[]> = this.productsService.getProducts();
-  public products$: Observable<IProduct[]> = this.store.select('products');
+  public products$: Observable<IProduct[]> = this.store.select('products', 'items');
   public searchText: string = '';
   public onlyFavorites = false;
 

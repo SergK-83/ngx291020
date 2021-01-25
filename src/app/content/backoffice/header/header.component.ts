@@ -3,6 +3,9 @@ import {
   OnInit,
 } from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
+import {IRootState} from '../../../store';
+import {Store} from '@ngrx/store';
+import {totalProducts} from '../../../store/reducers/cart.reducer';
 
 @Component({
   selector: 'app-header',
@@ -24,9 +27,12 @@ export class HeaderComponent implements OnInit {
   @Input()
   public drawer!: MatDrawer;
 
+  public cartProductsCount$ = this.store.select(totalProducts);
+
   constructor(
     // private cdr: ChangeDetectorRef,
     // private ngZone: NgZone
+    private store: Store<IRootState>
   ) {
   }
 
