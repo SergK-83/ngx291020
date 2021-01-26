@@ -5,7 +5,7 @@ import {
 import {MatDrawer} from '@angular/material/sidenav';
 import {IRootState} from '../../../store';
 import {Store} from '@ngrx/store';
-import {totalProducts} from '../../../store/reducers/cart.reducer';
+import {totalProducts} from '../../../store/selectors/cart.selector';
 
 @Component({
   selector: 'app-header',

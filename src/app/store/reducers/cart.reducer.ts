@@ -1,6 +1,6 @@
-import {Action, createFeatureSelector, createReducer, createSelector, on} from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
 import {IProduct} from './products.reducer';
-import {createEntityAdapter, EntityState} from '@ngrx/entity';
+import {createEntityAdapter} from '@ngrx/entity';
 import {
   addProductToCart,
   decrementProductInCart,
@@ -43,13 +43,3 @@ const reducer = createReducer(
 export default function cartReducer(state: any, action: Action): any {
   return reducer(state, action);
 }
-export const {selectAll} = cartAdapter.getSelectors();
-export const selectCart = createFeatureSelector<EntityState<ICartProduct>>('cart');
-
-export const selectProductInCart = createSelector(selectCart, selectAll);
-
-export const totalProducts = createSelector(selectProductInCart, (products: ICartProduct[]) => {
-  return products.reduce((count, product) => {
-    return (count += product.count);
-  }, 0);
-});

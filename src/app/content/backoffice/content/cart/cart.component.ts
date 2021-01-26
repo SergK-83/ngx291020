@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {IRootState} from '../../../../store';
 import {Store} from '@ngrx/store';
-import {ICartProduct, selectProductInCart} from '../../../../store/reducers/cart.reducer';
+import {ICartProduct} from '../../../../store/reducers/cart.reducer';
 import {Observable} from 'rxjs';
 import {
   decrementProductInCart,
   incrementProductInCart,
   removeProductFromCart
 } from '../../../../store/actions/cart.actions';
+import { cartProductWithBonusesAndPrice } from 'src/app/store/selectors/cart.selector';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,7 @@ import {
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  public products$: Observable<ICartProduct[]> = this.store.select(selectProductInCart);
+  public products$: Observable<ICartProduct[]> = this.store.select(cartProductWithBonusesAndPrice);
 
   constructor(
     private store: Store<IRootState>
@@ -38,5 +39,10 @@ export class CartComponent implements OnInit {
 
   public remove(id: string): void {
     this.store.dispatch(removeProductFromCart({id}));
+  }
+
+  // tslint:disable-next-line:variable-name
+  public trackByFn(_index: number, item: ICartProduct): string {
+    return item._id;
   }
 }

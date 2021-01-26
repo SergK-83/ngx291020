@@ -1,5 +1,5 @@
 <app-cart-product
-  *ngFor="let product of products$ | async"
+  *ngFor="let product of products$ | async; trackBy: trackByFn"
   [product]="product"
   (increment)="increment(product)"
   (decrement)="decrement(product)"

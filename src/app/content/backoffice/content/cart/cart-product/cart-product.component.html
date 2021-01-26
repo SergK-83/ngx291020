@@ -5,6 +5,6 @@
     <span>{{product?.count}}</span>
     <mat-icon (click)="incrementProduct()">add</mat-icon>
   </div>
-  <span>{{product.price | currency: '1.0-0'}}</span>
+  <span>{{product.price | number: '1.0-0'}}</span>
   <mat-icon (click)="removeProduct()">delete</mat-icon>
 </div>
