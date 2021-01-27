@@ -26,6 +26,10 @@ export class CartProductComponent {
   }
 
   public decrementProduct(): void {
+    if (this.product.count === 1) {
+      this.remove.emit();
+      return;
+    }
     this.decrement.emit();
   }
 

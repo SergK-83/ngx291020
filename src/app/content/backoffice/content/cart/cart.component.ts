@@ -29,11 +29,7 @@ export class CartComponent implements OnInit {
     this.store.dispatch(incrementProductInCart({id}));
   }
 
-  public decrement({_id: id, count}: ICartProduct): void {
-    if (count === 1) {
-      this.remove(id);
-      return;
-    }
+  public decrement({_id: id}: ICartProduct): void {
     this.store.dispatch(decrementProductInCart({id}));
   }
 
